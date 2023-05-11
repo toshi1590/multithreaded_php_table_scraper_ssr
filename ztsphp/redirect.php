@@ -36,4 +36,4 @@ if ($xpath_of_a != 'null') {
 
 exec("bash create.sh '$url' '$xpath_of_table' '$column_numbers_to_scrape' '$titles' '$rows' '$xpath_of_a' '$xpaths_to_scrape_in_a_new_page' '$parameter' '$pages' '$number_of_hrefs'");
 
-header('Location: /ssr/scraping.php');
+header('Location: /scraping.php');
