@@ -1,0 +1,14 @@
+name: PHPUnit test
+
+on: [push]
+ 
+jobs:
+  run-shell-commmand:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4.1.1
+      - name: phpunit test
+        run: |
+          docker-compose up -d
+          docker-compose exec -T ztsphp ls vendor/bin/ -l
+          docker-compose exec -T ztsphp bash -c "cd test && ../vendor/bin/phpunit ApiTest.php"

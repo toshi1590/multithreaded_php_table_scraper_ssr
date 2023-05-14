@@ -20,7 +20,7 @@ services:
     container_name: ztsphp_ssr
     volumes:
       - ${PWD}/ztsphp:/var/www/html
-    command: bash -c "chmod 777 /var/www/html && php-fpm"
+    command: bash -c "chmod 777 /var/www/html && chmod 665 vendor/bin/phpunit && php-fpm"
     networks:
       default:
         ipv4_address: 172.30.0.3
