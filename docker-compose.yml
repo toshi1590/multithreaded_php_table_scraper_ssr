@@ -11,6 +11,9 @@ services:
       - ${PWD}/nginx:/var/www/html
     depends_on:
       - ztsphp
+    networks:
+      default:
+        ipv4_address: 172.30.0.2
 
   ztsphp:
     build: ${PWD}/ztsphp
@@ -18,3 +21,14 @@ services:
     volumes:
       - ${PWD}/ztsphp:/var/www/html
     command: bash -c "chmod 777 /var/www/html && php-fpm"
+    networks:
+      default:
+        ipv4_address: 172.30.0.3
+
+networks:
+  default:
+    driver: bridge
+    ipam:
+     driver: default
+     config:
+       - subnet: 172.30.0.0/16

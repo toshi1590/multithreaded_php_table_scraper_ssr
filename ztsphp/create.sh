@@ -144,7 +144,7 @@ fi
   echo "  }"
   echo "}"
   echo ""
-  echo "echo json_encode(\$data);"
+  echo "echo json_encode(\$data, JSON_UNESCAPED_UNICODE);"
   echo "?>"
   echo ""
 } >> scraping.php
