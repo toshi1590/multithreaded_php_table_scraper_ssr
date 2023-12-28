@@ -11,14 +11,15 @@
       <h1>Table data scraping from SSR pages</h1>
     </header>
 
-    <form class="mb-5" action="/redirect.php" method="post">
+    <form class="mb-5" id="scraping_form">
       <div class="mb-5" id="url_section">
         <label class="mb-1">
           <b>url</b>
         </label>
-    	  <ul>
+        <ul>
           <li>https://finance.yahoo.co.jp/stocks/ranking/up?market=all&term=daily&page=1</li>
-	      </ul>
+          <li>/html/body/div/div[2]/main/div/div[2]/div[1]/section/div/div[3]/div/table</li>
+        </ul>
         <input type="text" class="form-control" name="url" placeholder="e.g. https://www.example.com" required>
       </div>
 
@@ -43,10 +44,10 @@
             </tr>
             <tr>
               <td>
-                <input type="number" class="form-control" name="column_numbers_to_scrape[]" value="" placeholder="e.g. 1" min="1" step="1" required>
+                <input type="number" class="form-control" name="column_numbers_to_scrape[]" placeholder="e.g. 1" min="1" step="1" required>
               </td>
               <td>
-                <input type="text" class="form-control" name="titles[]" value="" placeholder="e.g. price" required>
+                <input type="text" class="form-control" name="titles[]" placeholder="e.g. price" required>
               </td>
               <td></td>
             </tr>
@@ -56,9 +57,9 @@
 
       <div class="mb-5" id="rows_section">
         <label class="mb-1">
-          <b>the number of rows to scrape</b>
+          <b>the number of rows</b>
         </label>
-        <input type="number" class="form-control" name="rows" placeholder="rows" required>
+        <input type="number" class="form-control" name="rows" placeholder="e.g. 1" min="1" step="1" required>
       </div>
 
       <div class="mb-5" id="section_for_elements_to_scrape_on_derived_pages">
@@ -76,11 +77,21 @@
         <div id="pagination_inputs"></div>
       </div>
 
-      <input type="submit" class="btn btn-success" value="submit">
+      <button type="button" class="btn btn-success" id="start_scraping_btn">start scraping</button>
     </form>
 
+    <div id="result_table_section"></div>
+
+    <div class="loading hide"></div>
+
+    <form id="chart_form"></form>
+    <div id="chart_section"></div>
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script type="text/javascript" src="paginathing.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/list.js/1.5.0/list.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
+    <script src="background_colors.js"></script>
     <script src="common_functions.js"></script>
     <script src="index.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
