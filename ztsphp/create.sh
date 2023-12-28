@@ -124,7 +124,6 @@ do
   } >> scraping.php
 done
 
-
 if [ ${10} -gt 0 ]; then
   {
     echo "for (\$i = 1; \$i < count(\$data); \$i++) {"
@@ -144,60 +143,10 @@ fi
   echo "    array_unshift(\$data[\$i], \$i);"
   echo "  }"
   echo "}"
+  echo ""
+  echo "echo json_encode(\$data);"
   echo "?>"
   echo ""
 } >> scraping.php
 
-{
-  echo "<script type=\"text/javascript\">"
-  echo "  const data = JSON.parse('<?php echo json_encode(\$data); ?>');"
-  echo "</script>"
-  echo ""
-} >> scraping.php
 
-{
-  echo "<!doctype html>"
-  echo "<html lang=\"en\">"
-  echo "  <head>"
-  echo "    <meta charset=\"utf-8\">"
-  echo "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">"
-  echo "    <link href=\"https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css\" rel=\"stylesheet\" integrity=\"sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU\" crossorigin=\"anonymous\">"
-  echo "    <link rel=\"stylesheet\" href=\"http://localhost:81/index.css\">"
-  echo "  </head>"
-  echo "  <body class=\"m-1\">"
-  echo "    <div id=\"result_table_section\"></div>"
-  echo ""
-  echo "    <form class=\"mb-5\" id=\"chart_form\">"
-  echo "      <div class=\"form-check\">"
-  echo "        <input class=\"form-check-input\" type=\"radio\" name=\"condition\" id=\"group_by_a_column_radio\">group by a column"
-  echo "        <div id=\"group_by_a_column_section\"></div>"
-  echo "      </div>"
-  echo ""
-  echo "      <div class=\"form-check\">"
-  echo "        <input class=\"form-check-input\" type=\"radio\" name=\"condition\" id=\"range_radio\">range"
-  echo "        <div id=\"range_section\"></div>"
-  echo "      </div>"
-  echo ""
-  echo "      <div class=\"form-check\">"
-  echo "        <input class=\"form-check-input\" type=\"radio\" name=\"condition\" id=\"keyword_radio\">keyword"
-  echo "        <div id=\"keyword_section\"></div>"
-  echo "      </div>"
-  echo ""
-  echo "      <button type=\"button\" class=\"btn btn-primary\" id=\"see_chart_btn\">see chart</button>"
-  echo "    </form>"
-  echo ""
-  echo "    <div id=\"chart_section\"></div>"
-  echo ""
-  echo "    <script src=\"https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js\"></script>"
-  echo "    <script type=\"text/javascript\" src=\"http://localhost:81/paginathing.js\"></script>"
-  echo "    <script src=\"https://cdnjs.cloudflare.com/ajax/libs/list.js/1.5.0/list.min.js\"></script>"
-  echo "    <script src=\"https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js\"></script>"
-  echo "    <script src=\"http://localhost:81/background_colors.js\"></script>"
-  echo "    <script src=\"https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js\" integrity=\"sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ\" crossorigin=\"anonymous\"></script>"
-  echo "    <script src=\"https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.min.js\" integrity=\"sha384-skAcpIdS7UcVUC05LJ9Dxay8AXcDYfBJqt1CJ85S/CFujBsIzCIv+l9liuYLaMQ/\" crossorigin=\"anonymous\"></script>"
-  echo "    <script src=\"http://localhost:81/common_functions.js\"></script>"
-  echo "    <script src=\"http://localhost:81/result_table.js\"></script>"
-  echo "    <script src=\"http://localhost:81/chart.js\"></script>"
-  echo "  </body>"
-  echo "</html>"
-} >> scraping.php
