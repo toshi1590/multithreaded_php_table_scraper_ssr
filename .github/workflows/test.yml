@@ -1,0 +1,15 @@
+name: PHPUnit test
+
+on: [push]
+ 
+jobs:
+  run-shell-commmand:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4.1.1
+      - name: phpunit test
+        run: | # 複数のコマンドを記載したいときは|(パイプ)で繋ぐ
+          docker-compose up -d
+          cd test
+          ./vendor/bin/phpunit ApiTest.php
+#          npm -v
